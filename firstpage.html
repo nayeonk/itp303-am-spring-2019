@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+	<!-- HTML comment -->
+	<!-- cmd/ctrl slash to toggle comments -->
+	<head>
+		<title>My Page</title>
+
+		<!-- Create a stylesheet for CSS -->
+		<style>
+			/* CSS below */
+
+			/* Selecting h1 tag, adding css rules to it */
+			h1 {
+				color: green;
+				font-family: 'Arial';
+				font-size: 50px;
+				/* Can override default properties that come with the h1 tag. */
+				font-weight: normal;
+			}
+
+			h2 {
+				color: blue;
+			}
+			
+			/* Can also select tags using ID or class attributes */
+			#biology-heading {
+				color: #FFB53C;
+			}
+
+			/* class (use period) - can use multiple tags unlke iDs*/
+			.red {
+				color: red;
+			}
+
+			img {
+				width: 200px;
+
+				/* CSS will scale images for you, dont need to define both width AND height */
+				/* height: 300px; */
+			}
+
+			#header {
+				background-color: yellow;
+				/*width: 500px;*/
+				background-image: url("images/pikachu-bg.jpg");
+				padding-top: 80px;
+				padding-bottom: 80px;
+				text-align: center;
+				background-repeat: no-repeat;
+				background-size: cover;
+				background-position: top center;
+			}
+
+			#biology {
+				/*background-color: pink;*/
+				width: 800px;
+				/*text-align: center;*/
+				/*margin-left: 50px;*/
+				/*padding-left: 50px;*/
+				margin-left: auto;
+				margin-right: auto;
+			}
+			/* A class for all the sections */
+			.section {
+				width: 800px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			.top-image {
+				float: right;
+			}
+
+			.column {
+				background-color: #ccc;
+				/* 400px - 10px x 2 (padding) 10px x 2 (margin) 1px x 2 (border) */
+				width: 358px;
+				float: left;
+				/* floats have side effects. when we are done using floats, we need to CLEAR them.*/
+				padding-left: 10px;
+				padding-right: 10px;
+				margin-left: 10px;
+				margin-right: 10px;
+
+				border-color: black;
+				border-width: 1px;
+				border-style: solid;
+			}
+
+			/* clearing things - hack */
+			#evolution-container:after {
+				content: "";
+				clear: both;
+				display: table;
+			}
+
+			#footer {
+				text-align: center;
+				background-color: black;
+				color: white;
+				padding-top: 10px;
+				padding-bottom: 10px;
+			}
+
+			/* Not covered in lecture: This will remove all whitespaces around the edges that come by default with the browser. */
+			html, body {
+				margin: 0;
+				padding: 0;
+			}
+
+		</style>
+	</head>
+
+	<body>
+		<div id="header">
+			<h1>All About Pikachu</h1>
+		</div>
+
+		<div id="biology" class="section">
+			<img class="top-image" src="images/pikachu.png" alt="pikachu">
+
+			<h2 id="biology-heading">Biology</h2>
+
+			<p><strong>Pikachu</strong> is a short, chubby rodent Pokémon. It is covered in yellow fur with two horizontal brown stripes on its back. It has a small mouth, long, pointed ears with black tips, brown eyes, and the two red circles on its cheeks contain pouches for electricity storage. It has short forearms with five fingers on each paw, and its feet each have three toes. At the base of its lightning bolt-shaped tail is a patch of brown fur. A female will have a V-shaped notch at the end of its tail, which looks like the top of a heart. It is classified as a quadruped, but it has been known to stand and walk on its hind legs.</p>
+
+			<p>The anime has shown that wild Pikachu live in groups in forested areas. Pikachu communicate amongst themselves using squeaks and tail-shaking as friendly gestures. Electricity can be used to receive and send messages with each other, as well as other Electric Pokémon species. It raises its tail to check its surroundings, and is occasionally struck by lightning in this position. When groups grow, they can inadvertently cause lightning storms. Pikachu is found foraging for berries it roasts with electricity to make them tender enough to eat. A sure sign that Pikachu inhabits a location is patches of burnt grass. It has been observed eating and sometimes destroying telephone poles, wires, and other electronic equipment.</p>
+		</div>
+
+		<div id="trivia" class="section">
+			<h2 class="red">Trivia</h2>
+			<ul>
+				<li>Pikachu was designed by Atsuko Nishida, a core designer at Game Freak.</li>
+				<li>The nation of Niue released a one-dollar coin with its coat of arms on one side and Pikachu on the other to promote the Pokémon franchise.</li>
+				<li>In 2008, Japanese researchers discovered a new protein that helps carry electrical impulses from the eyes to the brain and named it pikachurin. According to them, it was so named for sharing Pikachu's "lightning-fast moves and shocking electric effects".</li>
+			</ul>
+		</div>
+
+		<div id="evolution" class="section">
+
+			<h2 class="red">Evolution</h2>
+			
+			<div id="evolution-container">
+				<div id="pichu" class="column">
+					<img src="images/pichu.png" alt="pichu"/>
+					<h3>Pichu</h3>
+					<p>Pichu evolves into Pikachu when leveled up with high friendship.</p>
+				</div>
+
+				<div id="raichu" class="column">
+					<img src="images/raichu.png" alt="raichu"/>
+					<h3>Raichu</h3>
+					<p>Requires Thunderstone to evolve into Raichu.</p>
+				</div>
+			</div>
+
+		</div>
+
+		<div id="learn-more" class="section">
+			<h2>Learn More</h2>
+			<p>More info about pikachu can be found at <a href="https://bulbapedia.bulbagarden.net/wiki/Pikachu_(Pok%C3%A9mon)" target="_blank">Bulbapedia</a>. </p>
+			<p>For questions, email <a href="mailto:info@pikachu.com">info@pikachu.com</a></p>
+		</div>
+
+		<div id="footer">
+			Copyright 2019.
+		</div>
+
+	</body>
+</html>

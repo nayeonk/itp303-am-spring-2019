@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Coachella</title>
+	<style>
+		/* Get rid of default spacing around the browser */
+		html, body {
+			padding: 0;
+			margin: 0;
+		}
+		#header {
+			background: linear-gradient(#feb645, #f1e767);
+			padding-top: 50px;
+			padding-bottom: 50px;
+			text-align: center;
+		}
+		/* Compound selector example */
+		#header h1 {
+			font-size: 50px;
+		}
+		/* Compound selector */
+		#artists h2 {
+			text-align: center;
+		}
+		#artists {
+			/*background-color: red;*/
+			padding-bottom: 50px;
+		}
+		.artist {
+			background-color: #FEF587;
+			width: 300px;
+			float: left;
+			margin-left: 10px;
+			margin-right: 10px;
+
+			/*padding-left: 20px;
+			padding-right: 20px;
+			padding-top: 20px;
+			padding-bottom: 20px;*/
+
+			/* shorthand to write padding - 20px on all sides */
+			padding: 20px;
+
+			/* Artist div becomes point of reference */
+			position: relative;
+		}
+		.artist:hover {
+			background-color: black;
+			cursor: pointer;
+		}
+		/* h3 is inside .artist */
+		/*.artist h3 {
+			color: orange;
+		}*/
+		/*body:hover h3 {
+			color: blue;
+		}*/
+		.artist:hover h3 {
+			color: white;
+		}
+		.row {
+			/*background-color: green;*/
+			/* (10 + 20 + 300 + 20 + 10) * 3*/
+			width: 1080px;
+			margin-right: auto;
+			margin-left: auto;
+
+			/* short way to write it*/
+			margin: 0 auto;
+		}
+		.row:after {
+			clear: both;
+			content: "";
+			/* browser bugs */
+			display: table;
+		}
+		.artist h3 {
+			text-align: center;
+			margin-top: 10px;
+			margin-bottom: 0;
+		}
+		.artist img {
+			width: 100%;
+		}
+		.artist .date {
+			background-color: white;
+			border: 2px solid black;
+			text-align: center;
+			font-weight: bold;
+			padding-top: 10px;
+			padding-bottom: 10px;
+
+			/* Use position to place date on top of artist */
+
+			/*position: relative;
+			top: -100px;*/
+
+			/* position absolute is hard to measure. */
+			/*position: absolute;
+			top: 200px;
+			left: 50px;*/
+
+			/* Now, positions in reference to its parent, the .artist */
+			position: absolute;
+			top: 0px;
+			right: 0px;
+
+			/* Default, hide. Two ways to hide an element. */
+			/*display: none;*/
+			visibility: hidden;
+		}
+		/* When user hovers over .artist, select the .date inside the .artist and override its visibility property to visible. */
+		.artist:hover .date {
+			visibility: visible;
+			/* overrides display:none */
+			/*display: block;*/
+		}
+
+		#about {
+			background-color: #FFED6A;
+			padding-top: 30px;
+			padding-bottom: 30px;
+		}
+		#about .about-inner {
+			width: 800px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		#footer {
+			background-color: black;
+			text-align: center;
+			color: white;
+			padding: 10px 0;
+		}
+
+		/* ---- CSS Positons 101 ---- */
+		#relative-div {
+			background-color: orange;
+			position: relative;
+			top: 100px;
+			left: 100px;
+		}
+		#absolute-div {
+			background-color: red;
+			position: absolute;
+			/* width - it changes to how wide the contents inside it are */
+			bottom: 10px;
+			left: 300px;
+		}
+		#fixed-div {
+			background-color: green;
+			position: fixed;
+			top: 0px;
+			left: 0px;
+			width: 100px;
+			height: 300px;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="header">
+		<h1>COACHELLA</h1>
+	</div>
+	<div id="artists">
+		<h2>Artists</h2>
+		<div class="row">
+			<div class="artist">
+				<img src="images/ariana.jpg" alt="Ariana Grande">
+				<h3>Ariana Grande</h3>
+				<div class="date">
+					APR 14 & 21
+				</div>
+			</div>
+			<div class="artist">
+				<img src="images/gambino.jpg" alt="Childish Gambino">
+				<h3>Childish Gambino</h3>
+				<div class="date">
+					APR 12 & 19
+				</div>
+			</div>
+			<div class="artist">
+				<img src="images/blackpink.jpg" alt="Black Pink">
+				<h3>Black Pink</h3>
+				<div class="date">
+					APR 12 & 19
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="about">
+		<div class="about-inner">
+			<h2>About</h2>
+			<p>The Coachella Valley Music and Arts Festival (commonly referred to as Coachella or the Coachella Festival) is an annual music and arts festival held at the Empire Polo Club in Indio, California, located in the Inland Empire's Coachella Valley in the Colorado Desert. It was co-founded by Paul Tollett and Rick Van Santen in 1999, and is organized by Goldenvoice, a subsidiary of AEG Live.[1] The event features musical artists from many genres of music, including rock, indie, hip hop, and electronic dance music, as well as art installations and sculptures. Across the grounds, several stages continuously host live music. The main stages are the: Coachella Stage, Outdoor Theatre, Gobi Tent, Mojave Tent, and Sahara Tent; a smaller Oasis Dome was used in 2006 and 2011, while a new Yuma stage was introduced in 2013 and a Sonora stage in 2017.</p>
+
+			<div id="relative-div">
+				I'm a relative div!!
+			</div>
+			<div id="absolute-div">
+				I'm an absolute div!!
+			</div>
+			<div id="fixed-div">
+				I'm a fixed div!!
+			</div>
+
+			<p>The festival's origins trace back to a 1993 concert that Pearl Jam performed at the Empire Polo Club while boycotting venues controlled by Ticketmaster. The show validated the site's viability for hosting large events, leading to the inaugural Coachella Festival being held over the course of two days in October 1999—just three months after Woodstock '99. After no event was held in 2000, Coachella returned on an annual basis beginning in April 2001, as a single-day event. In 2002, the festival reverted to a two-day format. Coachella was expanded to a third day in 2007 and eventually a second weekend in 2012; it is currently held on consecutive three-day weekends in April, with each weekend having identical lineups. Organizers began permitting spectators to camp on the grounds in 2003, one of several expansions and additions of amenities that have been made in the festival's history.</p>
+
+			<p>Coachella showcases popular and established musical artists, as well as emerging artists and reunited groups. Coachella is one of the largest, most famous, and most profitable music festivals in the United States and all over the world.[2][3] Each Coachella staged from 2013 to 2015 set new records for festival attendance and gross revenues. The 2017 festival was attended by 250,000 people and grossed $114.6 million. The success of Coachella led to Goldenvoice establishing two additional music festivals at the site, the classic rock-oriented Desert Trip in 2016, and the annual Stagecoach country music festival in 2007.</p>
+		</div>
+	</div>
+	<div id="footer">
+		Copyright 2019.
+	</div>
+</body>
+</html>

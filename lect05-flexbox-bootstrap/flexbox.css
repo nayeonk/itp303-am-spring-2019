@@ -1,0 +1,57 @@
+html,body{
+	margin: 0;
+	padding: 0;
+	font-family: 'Oswald', sans-serif;
+}
+* {
+	box-sizing: border-box;
+}
+
+/* Colors for each box. */
+.box1 { background-color: #011627; }
+.box2 { background-color: #EB5160; }
+.box3 { background-color: #030301; }
+.box4 { background-color: #00D9C0; }
+.box5 { background-color: #FF0022; }
+
+/* The parent */
+.container {
+  border: 10px solid skyblue;
+  /* Makes .container's direct children, flex boxes*/
+  display: flex;
+  height: 500px;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  /* defines alignment along the main axis (main axis is currently left to right, so horizontal)*/
+  justify-content: center;
+
+  /* defines alignemnt along the cross axis (opposit of main axis, so vertical)*/
+  align-items: flex-end;
+}
+
+/* .container's direct children */
+.box {
+	color: white;
+  	font-size: 28px;
+  	width: 80px;
+  	/*width: 32.33333%;*/
+  	/*margin-left: 1%;*/
+}
+.box2 {
+	font-size: 34px;
+	order: 1;
+}
+.box3 {
+	font-size: 44px;
+	order: 0;
+}
+
+
+
+
+
+
+
+
+
+

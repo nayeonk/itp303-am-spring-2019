@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lorem Ipsum</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="js.css">
+</head>
+<body>
+	<div class="section">
+		<h1>JS Playground</h1>
+	</div> <!-- .section -->
+
+	<div id="button-section" class="section">
+		<h2>Alert Window</h2>
+		<p>Test these buttons:</p>
+		<!-- Inline JavaScript -->
+		<!-- <button id="btn-click" onclick="sayHello()">Don't Click Me</button> -->
+		<button id="btn-click">Don't Click Me</button>
+		<button id="btn-touch">Don't Touch Me</button>
+	</div> <!-- #button-section -->
+
+	<div id="kanye-section" class="section">
+		<h2>Image Switch</h2>
+		<p>Hover over the image to flip it:</p>
+		<img id="kanye" src="images/kanye-1.jpg" alt="Kanye West">
+	</div> <!-- #kanye-section -->
+
+	<div id="color-boxes" class="section">
+		<h2>Background Color Change</h2>
+		<p>Click on a square to change background color:</p>
+
+		<div id="color-wrapper">
+			<div class="color-box" id="box1" data-color="#000">
+				#000
+			</div>
+			<div class="color-box" id="box2">
+				#FFF
+			</div>
+			<div class="color-box" id="box3">
+				#CCC
+			</div>
+			<div class="color-box" id="box4">
+				#777
+			</div>
+			<div class="color-box" id="box5">
+				#FC0
+			</div>
+			<div class="color-box" id="box6">
+				#900
+			</div>
+
+			<div class="clearfloat"></div>
+		</div> <!-- #color-wrapper -->
+	</div> <!-- #color-boxes -->
+
+	<div id="dom-section" class="section">
+		<h2>DOM Traversal</h2>
+
+		<h3>Lorem ipsum dolor sit amet</h3>
+
+		<p>Consectetur adipiscing elit. Proin nibh eros, tincidunt at metus non, ultrices vulputate felis. Suspendisse potenti. Vivamus sit amet cursus dolor, at lacinia dui. Pellentesque fringilla enim nibh, quis lobortis ante dictum vel. Etiam tortor turpis, venenatis sit amet est et, dictum auctor dolor. Etiam vehicula iaculis pharetra. Sed viverra interdum efficitur.</p>
+
+		<h3>Quisque volutpat eros ullamcorper</h3>
+		<p>Velit pulvinar, at tincidunt orci placerat. Morbi blandit neque est, id posuere urna accumsan non. Pellentesque a ligula sed velit elementum efficitur. Proin ex lectus, porta vitae accumsan ut, mattis ac ante. Interdum et malesuada fames ac ante ipsum primis in faucibus. Etiam nec mauris tortor. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sed diam volutpat odio mollis accumsan. Proin tempus erat sed lacinia condimentum. Fusce molestie ornare finibus. Nunc dictum vulputate scelerisque. Donec elementum semper arcu, eget blandit magna varius et. Integer pulvinar sem non sem volutpat varius. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</p>
+
+		<h3>Nulla elit eros</h3>
+		<p>Interdum sed, finibus in nibh. Praesent eros lectus, fermentum at enim non, porta ultrices nisi. Aliquam odio libero, commodo id pulvinar eget, gravida non turpis. In mi massa, placerat ut ex sed, mollis imperdiet elit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi ultrices scelerisque fermentum. Quisque luctus sapien vitae dignissim ornare. Donec non lorem sagittis, condimentum augue vel, suscipit nisl. Praesent blandit eu ligula eu dictum. Donec faucibus purus in urna mollis, nec vulputate sem mollis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam vulputate dignissim libero, ut blandit massa ultrices et. Fusce mattis luctus nibh. Donec rhoncus pretium lectus id sodales.</p>
+
+	</div> <!-- #dom-section -->
+
+	<!-- JavaScript -->
+	<script>
+		// Write JavaScript here
+		console.log("Hello World!");
+
+		// can declare variables without specifying a data type
+		// var name = "Nayeon";
+
+		let name = "Nayeon";
+
+		console.log(name);
+
+		// window object has a method called alert()
+		//window.alert("HEYYYY!!!");
+		//alert("hi theree");
+
+		// declare a function
+		// function sayHello() {
+		// 	alert("hi there!!");
+		// }
+
+		// another way to declare a function
+		let sayHello = function() {
+			alert("hi there!!");
+			return "hey!!";
+		}
+
+		// call (aka invoke) function
+		//sayHello();
+
+		//console.log( sayHello() );
+
+		// Grabs the "btn-click" element, assigns what happens when user clicks on this element
+		//document.getElementById("btn-click").onclick = sayHello;
+
+		// When button is clicked, run an ANONYMOUS function
+		document.getElementById("btn-click").onclick = function() {
+			alert("Don't click me!!");
+			console.log("You clicked the button!");
+		}
+
+		// another way to write event listeners
+		document.getElementById("btn-click").addEventListener("click", sayHello);
+
+		// you can write anonymous function in here as well
+		document.getElementById("btn-click").addEventListener("click", function() {
+			alert("Don't click me!!");
+		});
+
+		// Hover over "Dont Touch Me"
+		document.getElementById("btn-touch").onmouseenter = function() {
+			alert("I said don't touch me!");
+		}
+
+		console.log( document.getElementById("btn-click") );
+		// Grab elements using css syntax
+		console.log( document.querySelector("#btn-click") );
+		// Gets only the first item matching the .color-box class
+		console.log( document.querySelector(".color-box") );
+		// Gets ALL the elements matching .collor-box in an ARRAY
+		console.log( document.querySelectorAll(".color-box") );
+
+
+		// Flip Kanye's image
+		document.querySelector("#kanye").onmouseenter = function() {
+			// With JS, an element's attribute is the element's property
+			//document.querySelector("#kanye").src = "images/kanye-2.jpg";
+			this.src = "images/kanye-2.jpg";
+
+		}
+
+		// Flip back to original image
+		document.querySelector("#kanye").onmouseleave = function() {
+			//document.querySelector("#kanye").src = "images/kanye-1.jpg";
+			this.src = "images/kanye-1.jpg";
+		}
+
+		// Change the background color
+		//document.querySelector("body").style.backgroundColor = "black";
+		//document.body.style.backgroundColor = "black";
+
+		// Change background color depending on which color box is clicked
+		// document.querySelector("#box1").onclick = function() {
+		// 	document.body.style.backgroundColor = "#000";
+		// }
+		// document.querySelector("#box2").onclick = function() {
+		// 	document.body.style.backgroundColor = "#FFF";
+		// }
+		// document.querySelector("#box3").onclick = function() {
+		// 	document.body.style.backgroundColor = "#CCC";
+		// }
+
+		// Different
+		document.querySelector(".color-box").onclick = function() {
+			document.body.style.backgroundColor = "#000";
+		}
+
+		//document.querySelector("#box1").onclick = function() {
+			console.log( document.querySelector("#box1").innerHTML );
+		//}
+
+		console.log( document.querySelectorAll(".color-box")  );
+
+		let boxes = document.querySelectorAll(".color-box");
+		for(let i = 0; i < boxes.length; i++) {
+			boxes[i].onclick = function() {
+				//document.body.style.backgroundColor = "#000";
+				document.body.style.backgroundColor = boxes[i].innerHTML;
+			}
+		}
+
+		// Manipulating DOM via Traversal
+		let titles = document.querySelectorAll("#dom-section h3");
+		for(let i = 0; i < titles.length; i++) {
+			titles[i].onclick = function() {
+				console.log(this.nextElementSibling);
+
+				//this.nextElementSibling.style.display = "none";
+
+				// utilize CSS classes
+				//this.nextElementSibling.classList.add("hide");
+
+				// toggle by checking for the CSS
+				if(this.nextElementSibling.classList.contains("hide")) {
+					this.nextElementSibling.classList.remove("hide");
+				}
+				else {
+					this.nextElementSibling.classList.add("hide");
+				}
+			}
+		}
+
+	</script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

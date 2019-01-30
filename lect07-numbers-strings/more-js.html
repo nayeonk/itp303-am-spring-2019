@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS Numbers, Strings, User Input</title>
+	<style>
+		.form-row {
+			margin-bottom: 20px;
+			display: flex;
+		}
+		label {
+			width: 80px;
+		}
+		#name-input, #age-input {
+			width: 200px;
+			height: 15px;
+		}
+		.error {
+			color: red;
+			font-weight: bold;
+			margin-left: 10px;
+			visibility: hidden;
+		}
+	</style>
+</head>
+<body>
+	<h1 id="type">Start typing</h1>
+	<form action="" method="POST">
+		<div class="form-row">
+			<label for="name-input">Name:</label>
+			<input id="name-input" type="text" name="name" value=""/>
+			<div class="error">Error!</div>
+		</div>
+
+		<div class="form-row">
+			<label for="age-input">Age:</label>
+			<input id="age-input" type="text" name="age" value=""/>
+			<div class="error">Error!</div>
+		</div>
+
+		<div class="form-row">
+			<!-- Two ways to create a button -->
+			<!-- <input type="submit" name="submit-button" value="Go!"> -->
+			<button type="submit">Submit Button</button>
+		</div>
+	</form>
+
+	<script>
+		// Anything within the <script> tag is JavaScript
+
+		// detect when user presses a key in this document
+		document.onkeydown = function() {
+			// console.log("onkeydown");
+		}
+		document.onkeyup = function() {
+			// console.log("onkeyup");
+		}
+		// Very similar to onkeydown. The biggest difference is this doesn't pick up the arrow, control, etc btutons. Only for "typing" text
+		let firstPress = true;
+		document.onkeypress = function(event) {
+			//console.log("onkeypress");
+			// An event object gets passed to us when an event happens
+			//console.log(event.key);
+
+			// Display the text on the browser
+			// This overrides any previous text inside #type
+			//document.querySelector("#type").innerHTML = event.key;
+
+			// Clear out the "Start Typing" previous text
+			if(firstPress == true) {
+				//document.querySelector("#type").innerHTML = "";
+				firstPress = false;
+			}
+			// Append text, not delete previous text
+			//document.querySelector("#type").innerHTML = document.querySelector("#type").innerHTML + event.key;
+
+			// shorthand for above
+			//document.querySelector("#type").innerHTML += event.key;
+		}
+		document.onscroll = function() {
+
+		}
+
+		// NUMBERS
+		let number = 7;
+		let letter = "7";
+		// console.log(number);
+		// console.log(letter);
+
+		// console.log( 7 + 7 );
+		// console.log( 7 + "7" );
+		// console.log( "7" + "7" );
+
+		// console.log( number + letter );
+
+		// covert strings into integers or floating numbers
+		// console.log( parseInt(letter) );
+
+		// let decimal = 1.224242;
+		// console.log( parseFloat(decimal) ); 
+
+		// console.log( 7 * 7 );
+		// console.log( 7 / 7 );
+
+
+		// console.log( -1 / 0 );
+		// console.log( 0 / 0 );
+		// console.log( 0 / "hi" );
+		// console.log( 1 / 3 );
+
+		// The Math Library
+		// console.log( Math.PI );
+		// console.log( Math.ceil(1.1) );
+		// console.log( Math.floor(1.5) );
+		// console.log( Math.round(1.5) );
+
+
+		// STRINGS 
+		let firstName = "nayeon";
+		let lastName = "Kim";
+
+		console.log( firstName + " " + lastName );
+
+		console.log(firstName[0]);
+		console.log(firstName.length);
+		console.log(firstName.charAt(1));
+		// Searches for the first occurence of the character and returns the index (aka position)
+		console.log(firstName.indexOf("n"));
+
+		// Searches for the last occurence of the character and returns the index
+		console.log(firstName.lastIndexOf("n"));
+		console.log(firstName.toUpperCase());
+
+		// VALIDATION
+		document.querySelector("form").onsubmit = function() {
+
+			// Grab whatever the user just typed in
+			console.log( document.querySelector("#name-input").value );
+			console.log( document.querySelector("#age-input").value );
+
+			let nameInput = document.querySelector("#name-input").value;
+			let ageInput = document.querySelector("#age-input").value;
+
+			// Check that name input is not blank
+			if(nameInput.trim().length == 0) {
+				// display an error
+				document.querySelector("#name-input").nextElementSibling.style.visibility = "visible";
+				document.querySelector("#name-input").nextElementSibling.innerHTML = "Name cannot be empty. Please fill this out.";
+			}
+			else {
+				document.querySelector("#name-input").nextElementSibling.style.visibility = "hidden";
+			}
+
+			// prevents the default behavior of the form (submitting itself)
+			return false;
+
+		}
+
+
+	</script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

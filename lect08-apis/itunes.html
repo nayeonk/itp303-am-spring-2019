@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>JSON, JSONP</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+
+	<style>
+	.table th, .table td {
+		text-align: center;
+		vertical-align: middle;
+	}
+</style>
+</head>
+<body>
+
+	<div class="container-fluid">
+
+		<div class="row">
+			<h1 class="col-12 mt-4">iTunes JSON API</h1>
+		</div> <!-- .row -->
+
+		<div class="row">
+
+			<form action="" method="" class="col-12" id="search-form">
+				<div class="form-row">
+
+					<div class="col-12 mt-4 col-sm-6 col-lg-4">
+						<label for="search-id" class="sr-only">Search:</label>
+						<input type="text" name="" class="form-control" id="search-id" placeholder="Search...">
+					</div>
+
+					<div class="col-12 mt-4 col-sm-4 col-md-3 col-lg-2">
+						<label for="limit-id" class="sr-only">Number of results:</label>
+						<select name="" class="form-control" id="limit-id">
+							<option value="5">5 results</option>
+							<option value="10">10 results</option>
+							<option value="25">25 results</option>
+							<option value="50">50 results</option>
+							<option value="100">100 results</option>
+						</select>
+					</div>
+
+					<div class="col-12 mt-4 col-sm-auto">
+						<button type="submit" class="btn btn-primary btn-block">Search</button>
+					</div>
+
+				</div> <!-- .form-row -->
+			</form>
+
+		</div> <!-- .row -->
+
+		<div class="row">
+
+			<div class="col-12 mt-4">
+				Showing <span id="num-results" class="font-weight-bold">1</span> result(s).
+			</div>
+
+			<table class="table table-responsive table-striped col-12 mt-3">
+				<thead>
+					<tr>
+						<th>Cover</th>
+						<th>Artist</th>
+						<th>Track</th>
+						<th>Album</th>
+						<th>Preview</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr>
+						<td><img src="http://is2.mzstatic.com/image/thumb/Music/v4/40/d0/29/40d029b5-4c32-53d2-69d1-ea04a513c345/source/100x100bb.jpg"></td>
+						<td>The Beatles</td>
+						<td>Here Comes the Sun</td>
+						<td>Abbey Road</td>
+						<td><audio src="https://audio-ssl.itunes.apple.com/apple-assets-us-std-000001/AudioPreview71/v4/46/48/7d/46487d90-d40c-7c47-7285-5edbfd0fd2c0/mzaf_5516723347634890825.plus.aac.p.m4a" controls></audio></td>
+					</tr>
+
+					<tr>
+						<td><img src="http://is2.mzstatic.com/image/thumb/Music/v4/40/d0/29/40d029b5-4c32-53d2-69d1-ea04a513c345/source/100x100bb.jpg"></td>
+						<td>The Beatles</td>
+						<td>Blah blah balh</td>
+						<td>Abbey Road</td>
+						<td><audio src="https://audio-ssl.itunes.apple.com/apple-assets-us-std-000001/AudioPreview71/v4/46/48/7d/46487d90-d40c-7c47-7285-5edbfd0fd2c0/mzaf_5516723347634890825.plus.aac.p.m4a" controls></audio></td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div> <!-- .row -->
+
+	</div> <!-- .container-fluid -->
+
+	<script>
+
+		// When user submits the search form, the magic happens
+		document.querySelector("#search-form").onsubmit = function() {
+			// Grab whatever the user typed in
+			let searchTermInput = document.querySelector("#search-id").value.trim();
+			let limitInput = document.querySelector("#limit-id").value;
+
+			// Start communication with iTunes Search API. Make a HTTP request via AJAX.
+			// XMLHTTPrequest is an object
+			let xhr = new XMLHttpRequest();
+			// "Open" a connection with iTunes. Two parameters - method, endpoint
+			xhr.open("GET", "https://itunes.apple.com/search?term=" + searchTermInput + "&limit=" + limitInput);
+			xhr.send();
+
+			// Need to wait for a response from iTunes....
+			// AJAX will let us know when we get a response from iTunes.
+			xhr.onreadystatechange = function() {
+				// this function only gets run when a state has changed
+				//console.log(this);
+				// this.DONE same as readyState 4
+				if(this.readyState == this.DONE) {
+					// request is completed. ready to receive a response
+					if(xhr.status == 200) {
+						// Got a succesful response back!
+						console.log(xhr.responseText);
+
+						// convert JSON string to JS objects
+						let resultObjects = JSON.parse(xhr.responseText);
+						console.log(resultObjects);
+						// call function that generates HTML for the results
+						displaySearchResults(resultObjects);
+
+					}
+					else {
+						// Error
+						console.log("AJAX ERROR!");
+						console.log(xhr.status);
+					}
+				}
+			}
+
+			// prevent form from being submitted
+			return false;
+		}
+
+		function displaySearchResults(results) {
+
+			// <tr>
+			// 	<td><img src="http://is2.mzstatic.com/image/thumb/Music/v4/40/d0/29/40d029b5-4c32-53d2-69d1-ea04a513c345/source/100x100bb.jpg"></td>
+			// 	<td>The Beatles</td>
+			// 	<td>Blah blah balh</td>
+			// 	<td>Abbey Road</td>
+			// 	<td><audio src="https://audio-ssl.itunes.apple.com/apple-assets-us-std-000001/AudioPreview71/v4/46/48/7d/46487d90-d40c-7c47-7285-5edbfd0fd2c0/mzaf_5516723347634890825.plus.aac.p.m4a" controls></audio></td>
+			// </tr>
+
+			// Clear previous results - anything inside the tbody
+			while(document.querySelector("tbody").hasChildNodes()) {
+				document.querySelector("tbody").removeChild(document.querySelector("tbody").lastChild);
+			}
+
+			for(let i = 0; i < results.results.length; i++) {
+				// Create a <tr> tag
+				let trElement = document.createElement("tr");
+				// Append newly created <tr> tag to <tbody>
+				document.querySelector("tbody").appendChild(trElement);
+
+				// Create <td> tags, one for each piece of data
+				let imageTd = document.createElement("td");
+				let imageElement = document.createElement("img");
+				// Create <img> tag
+				imageElement.src = results.results[i].artworkUrl100;
+				// Append <img> to <td>
+				imageTd.appendChild(imageElement);
+				// Append <td> to <tr>
+				trElement.appendChild(imageTd);
+
+				// Create <td> for artist, fill in with artist name
+				let artistTd = document.createElement("td");
+				artistTd.innerHTML = results.results[i].artistName;
+				trElement.appendChild(artistTd);
+
+				// Create <td> for track, fill in with track name
+				let trackTd = document.createElement("td");
+				trackTd.innerHTML = results.results[i].trackName;
+				trElement.appendChild(trackTd);
+
+				// Create <td> for album, fill in with track name
+				let albumTd = document.createElement("td");
+				albumTd.innerHTML = results.results[i].collectionName;
+				trElement.appendChild(albumTd);
+
+				// Create <audio> for preview
+				let audioTd = document.createElement("td");
+				let audioElement = document.createElement("audio");
+				audioElement.src = results.results[i].previewUrl;
+				audioElement.controls = true;
+				audioTd.appendChild(audioElement);
+				trElement.appendChild(audioTd);
+			}
+
+		}
+
+	</script>
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+

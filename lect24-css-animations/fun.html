@@ -81,15 +81,20 @@
 			width: 280px;
 			margin-top: 20px;
 			margin-bottom: 400px;
+		}
+		/* Not covered in lecture: This class is added to trigger the animation*/
+		.box7.animate {
 			animation-name: move;
 			animation-duration: 2s;
 			animation-delay: 0s;
 			animation-iteration-count: infinite;
 			/*animation-fill-mode: forwards;*/
-
 		}
 		.box7 img {
 			width: 100%;
+		}
+		#button {
+			margin-top: 20px;
 		}
 
 		/* Define an animation routine */
@@ -139,11 +144,20 @@
 		<div class="box6">
 			Hello, I'm another box.
 		</div>
+
+		<!-- Not convered in lecture, but added for your benefit: -->
+		<button id="button">Click me</button>
+
 		<div class="box7">
 			<img src="https://media.altpress.com/uploads/2018/07/pikachu_pokemongo_header2016-1-696x449.png" />
 		</div>
 	</div>
 	
+	<script>
+		document.querySelector("#button").onclick = function() {
+			document.querySelector(".box7").classList.add("animate");
+		}
+	</script>
 </body>
 </html>
 
